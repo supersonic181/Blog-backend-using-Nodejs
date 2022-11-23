@@ -117,7 +117,7 @@ const adminLogin = (req, res) => {
                             httpOnly: true,
                             maxAge: 24 * 60 * 60 * 1000
                         });
-
+                        connection.destroy();
                         return res.status(200).send({ token: token, message: "User logged in successfully" });
                     }
                     else {
