@@ -17,7 +17,6 @@ app.use(cors({
     origin: "*"
 }));
 
-
 app.use('/api', routes);
 
 module.exports = {app};
