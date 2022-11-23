@@ -1,4 +1,3 @@
-const { ConstructionOutlined } = require('@mui/icons-material');
 const jwt = require('jsonwebtoken');
 const secret_key = "secrettoken123";
 const { connection } = require('../db/dbconnection'); 4
