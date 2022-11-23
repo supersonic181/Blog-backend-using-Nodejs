@@ -4,10 +4,10 @@ const serverConfig = {
 }
 
 const dbConfig = {
-    host: 'localhost',
-    user: 'root',
-    password: '12345',
-    database: 'atorvis_blog'
+    host: process.env.host,
+    user: process.env.user,
+    password: process.env.password,
+    database: process.env.database
 }
 
 module.exports = {

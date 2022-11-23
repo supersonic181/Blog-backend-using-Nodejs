@@ -76,7 +76,6 @@ const loginUser = (req, res) => {
                 if (email == result.email && is_match) {
                     const token = jwt.sign({ userid: result.id }, secret_key, { expiresIn: '1d' });
                     res.cookie("jwt", token, {
-                        httpOnly: true,
                         maxAge: 24 * 60 * 60 * 1000
                     });
 
