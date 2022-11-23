@@ -14,7 +14,7 @@ const registerUser = (req, res) => {
         if(email && name && password && access)
         {
             connection.query({
-                sql: "SELECT * FROM user WHERE email=?",
+                sql: "SELECT * FROM User WHERE email=?",
                 values: [email]
             }, async (error, results) => {
                 if (error) {

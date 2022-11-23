@@ -12,7 +12,7 @@ const getAllPost = (req, res) => {
         }
 
         connection.query({
-            sql: "SELECT post.id, user.name, title, substring(body, 1, 200) AS body, category.name AS categoryname, category.slug AS categoryslug, GROUP_CONCAT(tag.name) AS tagname, GROUP_CONCAT(tag.slug) AS tagslug, created_at FROM post INNER JOIN user ON user.id = post.author_id INNER JOIN category ON post.category_id = category.id INNER JOIN post_tags ON post_tags.post_id = post.id INNER JOIN tag ON tag.id = post_tags.tag_id GROUP BY post.id ORDER BY post.created_at DESC"
+            sql: "SELECT Post.id, User.name, title, substring(body, 1, 200) AS body, Category.name AS categoryname, Category.slug AS categoryslug, GROUP_CONCAT(Tag.name) AS tagname, GROUP_CONCAT(Tag.slug) AS tagslug, created_at FROM Post INNER JOIN User ON User.id = Post.author_id INNER JOIN Category ON Post.category_id = Category.id INNER JOIN Post_Tags ON Post_Tags.post_id = Post.id INNER JOIN Tag ON Tag.id = Post_Tags.tag_id GROUP BY Post.id ORDER BY Post.created_at DESC"
         }, (error, result) => {
             if (error) {
                 console.log(error)
@@ -97,7 +97,7 @@ const getPostById = (req, res) => {
         const postid = req.params.id;
 
         connection.query({
-            sql: "SELECT post.id, user.name, title, body, category.name AS categoryname, category.slug AS categoryslug, GROUP_CONCAT(tag.name) AS tagname, GROUP_CONCAT(tag.slug) AS tagslug, created_at FROM post INNER JOIN user ON user.id = post.author_id INNER JOIN category ON post.category_id = category.id INNER JOIN post_tags ON post_tags.post_id = post.id INNER JOIN tag ON tag.id = post_tags.tag_id WHERE post.id=? GROUP BY post.id ORDER BY post.created_at DESC",
+            sql: "SELECT Post.id, User.name, title, body, Category.name AS categoryname, Category.slug AS categoryslug, GROUP_CONCAT(Tag.name) AS tagname, GROUP_CONCAT(Tag.slug) AS tagslug, created_at FROM Post INNER JOIN User ON User.id = Post.author_id INNER JOIN Category ON Post.category_id = Category.id INNER JOIN Post_Tags ON Post_Tags.post_id = Post.id INNER JOIN Tag ON Tag.id = Post_Tags.tag_id WHERE Post.id=? GROUP BY Post.id ORDER BY Post.created_at DESC",
             values: [postid]
         }, (error, results) => {
             if (error) {
@@ -179,7 +179,7 @@ const getPostByCategory = (req, res) => {
         const slug = req.params.slug;
 
         connection.query({
-            sql: "SELECT post.id, user.name, title, substring(body, 1, 200) AS body, category.name AS categoryname, category.slug AS categoryslug, GROUP_CONCAT(tag.name) AS tagname, GROUP_CONCAT(tag.slug) AS tagslug, created_at FROM post INNER JOIN user ON user.id = post.author_id INNER JOIN category ON post.category_id = category.id INNER JOIN post_tags ON post_tags.post_id = post.id INNER JOIN tag ON tag.id = post_tags.tag_id WHERE category.slug=? GROUP BY post.id ORDER BY post.created_at DESC",
+            sql: "SELECT Post.id, User.name, title, substring(body, 1, 200) AS body, Category.name AS categoryname, Category.slug AS categoryslug, GROUP_CONCAT(Tag.name) AS tagname, GROUP_CONCAT(Tag.slug) AS tagslug, created_at FROM Post INNER JOIN User ON User.id = Post.author_id INNER JOIN Category ON Post.category_id = Category.id INNER JOIN Post_Tags ON Post_Tags.post_id = Post.id INNER JOIN Tag ON Tag.id = Post_Tags.tag_id WHERE Category.slug=? GROUP BY Post.id ORDER BY Post.created_at DESC",
             values: [slug]
         }, (error, results) => {
             if (error) {
@@ -207,7 +207,7 @@ const getPostByTag = (req, res) => {
         const slug = req.params.slug;
 
         connection.query({
-            sql: "SELECT post.id, user.name, title, substring(body, 1, 200) AS body, category.name AS categoryname, category.slug AS categoryslug, GROUP_CONCAT(tag.name) AS tagname, GROUP_CONCAT(tag.slug) AS tagslug, created_at FROM post INNER JOIN user ON user.id = post.author_id INNER JOIN category ON post.category_id = category.id INNER JOIN post_tags ON post_tags.post_id = post.id INNER JOIN tag ON tag.id = post_tags.tag_id WHERE tag.slug=? GROUP BY post.id ORDER BY post.created_at DESC",
+            sql: "SELECT Post.id, User.name, title, substring(body, 1, 200) AS body, Category.name AS categoryname, Category.slug AS categoryslug, GROUP_CONCAT(Tag.name) AS tagname, GROUP_CONCAT(Tag.slug) AS tagslug, created_at FROM Post INNER JOIN User ON User.id = Post.author_id INNER JOIN Category ON Post.category_id = Category.id INNER JOIN Post_Tags ON Post_Tags.post_id = Post.id INNER JOIN Tag ON Tag.id = Post_Tags.tag_id WHERE Tag.slug=? GROUP BY Post.id ORDER BY Post.created_at DESC",
             values: [slug]
         }, (error, results) => {
             if (error) {
@@ -233,7 +233,7 @@ const getPostByAuthor = (req, res) => {
         }
 
         connection.query({
-            sql: "SELECT post.id, user.name, title, substring(body, 1, 200) AS body, category.name AS categoryname, category.slug AS categoryslug, GROUP_CONCAT(tag.name) AS tagname, GROUP_CONCAT(tag.slug) AS tagslug, created_at FROM post INNER JOIN user ON user.id = post.author_id INNER JOIN category ON post.category_id = category.id INNER JOIN post_tags ON post_tags.post_id = post.id INNER JOIN tag ON tag.id = post_tags.tag_id WHERE post.author_id=? GROUP BY post.id ORDER BY post.created_at DESC",
+            sql: "SELECT Post.id, User.name, title, substring(body, 1, 200) AS body, Category.name AS categoryname, Category.slug AS categoryslug, GROUP_CONCAT(Tag.name) AS tagname, GROUP_CONCAT(Tag.slug) AS tagslug, created_at FROM Post INNER JOIN User ON User.id = Post.author_id INNER JOIN Category ON Post.category_id = Category.id INNER JOIN Post_Tags ON Post_Tags.post_id = Post.id INNER JOIN Tag ON Tag.id = Post_Tags.tag_id WHERE Post.author_id=? GROUP BY Post.id ORDER BY Post.created_at DESC",
             values: [claims.userid]
         }, (error, results) => {
             if (error) {

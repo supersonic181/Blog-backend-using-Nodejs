@@ -207,7 +207,7 @@ const updateUserAccess = (req, res) => {
 
             if (result[0].name.toLowerCase() == "admin") {
                 connection.query({
-                    sql: "UPDATE user SET access=? WHERE email=?",
+                    sql: "UPDATE User SET access=? WHERE email=?",
                     values: [access_level, email]
                 }, (error, result) => {
                     if (error) {

@@ -54,7 +54,7 @@ const viewAll = (req, res) => {
         }
 
         connection.query({
-            sql: "SELECT * FROM tag",
+            sql: "SELECT * FROM Tag",
         }, (error, results) => {
             if (error) {
                 console.log(error)

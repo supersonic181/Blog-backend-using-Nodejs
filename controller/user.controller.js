@@ -13,7 +13,7 @@ const getProfile = (req, res) => {
         }
 
         connection.query({
-            sql: "SELECT user.email,user.name,access_level.name AS access FROM User INNER JOIN access_level ON user.access = access_level.level WHERE user.id=?",
+            sql: "SELECT User.email,User.name,Access_Level.name AS access FROM User INNER JOIN Access_Level ON User.access = Access_Level.level WHERE User.id=?",
             values: [claims.userid]
         }, (error, result) => {
             if (error) {
@@ -67,7 +67,7 @@ const getAccess = (req, res) => {
         }
 
         connection.query({
-            sql: "SELECT name FROM Access_Level WHERE id IN (SELECT access FROM user WHERE id=?)",
+            sql: "SELECT name FROM Access_Level WHERE id IN (SELECT access FROM User WHERE id=?)",
             values: [claims.userid]
         }, (error, result) => {
             if (error) {
